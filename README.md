@@ -1,6 +1,7 @@
 Установка зависимостей: pip install -r requirements.txt
 
-### Сбор статистики в разделе
+Анонимный форум должен отдавать board_speed в json раздела, чтобы скрипт мог собирать статистику.
+### Сбор статистики в разделе 
 ```
 usage: python board_speed_get.py [-h] [-f FILENAME] [-ss {Y,N}] [-i INTERVAL]
 
@@ -31,6 +32,8 @@ options:
   -id INTERVAL_DAYS, --interval-days INTERVAL_DAYS
                         Интервал в днях для построение графика
 ```
+
+Анонимный форум должен отдавать posts_count в json треда, чтобы скрипт мог собирать статистику.
 ### Сбор статистики в треде
 ```
 usage: python thread_speed_get.py [-h] [-f FILENAME] [-ss {Y,N}] [-i INTERVAL]
