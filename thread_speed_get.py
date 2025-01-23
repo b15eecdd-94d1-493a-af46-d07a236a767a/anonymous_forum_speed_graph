@@ -108,15 +108,15 @@ class PostingInThreadSpeedDownloader:
 
 # Пример использования
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser("python " + sys.argv[0])
-    parser.add_argument("-f", "--filename", help="Файл json с логом", type=str, default="")
+    parser = argparse.ArgumentParser("python " + sys.argv[0], formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("-f", "--filename", help="Файл json с логом", type=str, default="{thread}")
     parser.add_argument("-ss", "--show-statistic", help="Выводить статистику в консоль", type=str, choices=["Y", "N"], default="Y")
     parser.add_argument("-i", "--interval", help="Интервал в минутах для обновления статистики", type=int, default=10)
     args = parser.parse_args()
     # Пример URL (замените на реальный URL)
     url = input('URL с json содержающий параметр posts_count: ')
     # Создаем объект и получаем данные о скорости постинга
-    if args.filename == "":
+    if args.filename == "" or args.filename == "{thread}":
         filename = url.split('/')[-1]
     else:
         filename = args.filename

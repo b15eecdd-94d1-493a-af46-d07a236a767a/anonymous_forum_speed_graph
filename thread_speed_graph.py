@@ -72,13 +72,13 @@ class PostingInThreadSpeedAnalyzer:
 # Пример использования
 if __name__ == "__main__":
     # Пример данных
-    parser = argparse.ArgumentParser("python " + sys.argv[0] + " [-n]")
+    parser = argparse.ArgumentParser("python " + sys.argv[0] + " [-n]", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-b", "--board", help="Доска", type=str, default="")
     parser.add_argument("-dtf", "--datetime-format", help='Формат вывода даты и времени на графике (%%Y-%%m-%%d %%H:%%M:%%S)', type=str, default="%Y-%m-%d %H:%M:%S")   
     parser.add_argument("-tz", "--timezone", help="Часовой пояс (local - локальный часовой пояс)", type=str, default="UTC")   
-    parser.add_argument("-im", "--interval-minutes", help="Интервал в минутах для построение графика", type=int, default=0)  
-    parser.add_argument("-ih", "--interval-hours", help="Интервал в часах для построение графика", type=int, default=0)  
-    parser.add_argument("-id", "--interval-days", help="Интервал в днях для построение графика", type=int, default=0)  
+    parser.add_argument("-im", "--interval-minutes", help="Интервал в минутах для оси времени графика", type=int, default=0)  
+    parser.add_argument("-ih", "--interval-hours", help="Интервал в часах для оси времени графика", type=int, default=0)  
+    parser.add_argument("-id", "--interval-days", help="Интервал в днях для оси времени графика", type=int, default=0)  
     args = parser.parse_args()
     rating_file = os.path.abspath(input('Файл с json: '))
     if os.path.exists(rating_file) == False and Path(rating_file).suffix != '.json':

@@ -108,15 +108,15 @@ class PostingSpeedDownloader:
 
 # Пример использования
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser("python " + sys.argv[0])
-    parser.add_argument("-f", "--filename", help="Файл json с логом", type=str, default="")
+    parser = argparse.ArgumentParser("python " + sys.argv[0], formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("-f", "--filename", help="Файл json с логом", type=str, default="{board}")
     parser.add_argument("-ss", "--show-statistic", help="Выводить статистику в консоль", type=str, choices=["Y", "N"], default="Y")
     parser.add_argument("-i", "--interval", help="Интервал в минутах для обновления статистики", type=int, default=10)
     args = parser.parse_args()
     # Пример URL (замените на реальный URL)
     url = input('URL с json содержающий параметр board_speed: ')
     # Создаем объект и получаем данные о скорости постинга
-    if args.filename == "":
+    if args.filename == "" or args.filename == "{board}":
         filename = url.split('/')[-2]
     else:
         filename = args.filename
