@@ -1,6 +1,7 @@
 Установка зависимостей: pip install -r requirements.txt
 
 === Сбор статистики в разделе ===
+```
 usage: python board_speed_get.py [-h] [-f FILENAME] [-ss {Y,N}] [-i INTERVAL]
 
 options:
@@ -11,8 +12,9 @@ options:
                         Выводить статистику в консоль
   -i INTERVAL, --interval INTERVAL
                         Интервал в минутах для обновления статистики
-
+```
 === Построение графика для оценки скорости постинга в разделе ===
+```
 usage: python board_speed_graph.py [-h] [-dtf DATETIME_FORMAT] [-tz TIMEZONE] [-im INTERVAL_MINUTES] [-ih INTERVAL_HOURS]
                                    [-id INTERVAL_DAYS]
 
@@ -28,8 +30,9 @@ options:
                         Интервал в часах для построение графика
   -id INTERVAL_DAYS, --interval-days INTERVAL_DAYS
                         Интервал в днях для построение графика
-
+```
 === Сбор статистики в треде ===
+```
 usage: python thread_speed_get.py [-h] [-f FILENAME] [-ss {Y,N}] [-i INTERVAL]
 
 options:
@@ -40,8 +43,9 @@ options:
                         Выводить статистику в консоль
   -i INTERVAL, --interval INTERVAL
                         Интервал в минутах для обновления статистики
-
+```
 === Построение графика для оценки скорости постинга в треде ===
+```
 usage: python thread_speed_get.py [-h] [-f FILENAME] [-ss {Y,N}] [-i INTERVAL]
 
 options:
@@ -52,3 +56,4 @@ options:
                         Выводить статистику в консоль
   -i INTERVAL, --interval INTERVAL
                         Интервал в минутах для обновления статистики
+```
