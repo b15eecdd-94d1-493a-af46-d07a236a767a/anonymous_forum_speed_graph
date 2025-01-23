@@ -49,7 +49,7 @@ options:
 ```
 ### Построение графика для оценки скорости постинга в треде
 ```
-usage: python thread_speed_graph.py [-n] [-h] [-b BOARD] [-dtf DATETIME_FORMAT] [-tz TIMEZONE] [-im INTERVAL_MINUTES]
+usage: python thread_speed_graph.py [-h] [-b BOARD] [-dtf DATETIME_FORMAT] [-tz TIMEZONE] [-im INTERVAL_MINUTES]
                                          [-ih INTERVAL_HOURS] [-id INTERVAL_DAYS]
 
 options:
