@@ -72,7 +72,7 @@ class PostingInThreadSpeedAnalyzer:
 # Пример использования
 if __name__ == "__main__":
     # Пример данных
-    parser = argparse.ArgumentParser("python " + sys.argv[0] + " [-n]", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser = argparse.ArgumentParser("python " + sys.argv[0], formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-b", "--board", help="Доска", type=str, default="")
     parser.add_argument("-dtf", "--datetime-format", help='Формат вывода даты и времени на графике', type=str, default="%Y-%m-%d %H:%M:%S")   
     parser.add_argument("-tz", "--timezone", help="Часовой пояс (local - локальный часовой пояс)", type=str, default="UTC")   
