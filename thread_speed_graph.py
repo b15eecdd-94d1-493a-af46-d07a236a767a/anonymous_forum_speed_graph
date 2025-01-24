@@ -10,7 +10,7 @@ import time
 import tzlocal
 
 class PostingInThreadSpeedAnalyzer:
-    def __init__(self, data, title = 'Скорость постинга', filename = 'posting_in_thread_speed.png', datetime_format = '%Y-%m-%d %H:%M:%S', timezone = 'UTC', interval_minutes = 0, interval_hours = 0, interval_days = 0):
+    def __init__(self, data, title = 'Скорость постинга', filename = 'posting_in_thread_speed.png', datetime_format = '%Y-%m-%d %H:%M:%S', timezone = 'UTC', interval_minutes = 0, interval_hours = 0, interval_days = 0, width = False, height = False):
         """
         Инициализация класса.
         :param data: Список словарей в формате {'board_speed': количество_постов, 'timestamp': timestamp}.
@@ -30,7 +30,11 @@ class PostingInThreadSpeedAnalyzer:
         self.interval_hours = interval_hours
         self.interval_days = interval_days
         self.interval_total_seconds = (interval_minutes * 60) + (interval_hours * 60 * 60) + (interval_days * 24 * 60 * 60)
-        #print(self.interval_total_seconds)
+        self.width = width
+        if height <= 2 or height == None or height == False or height > 20:
+            self.height = 6
+        else:
+            self.height = height
 
     def plot_posting_speed(self):
         """
@@ -54,7 +58,18 @@ class PostingInThreadSpeedAnalyzer:
                     posts.append(entry['posts_count'])                
                     prev_entry_datetime = entry_datetime
         # Создаем график
-        plt.figure(figsize=(10, 6))
+        if self.width <= 3 or self.width == None or self.width == False or self.width > 30:
+            len_dates = len(dates)
+            if len_dates <= 10:
+                plt.figure(figsize=(10, self.height))
+            elif len_dates <= 15:
+                plt.figure(figsize=(15, self.height))
+            elif len_dates <= 20:
+                plt.figure(figsize=(20, self.height))
+            else:
+                plt.figure(figsize=(25, self.height))
+        else:
+            plt.figure(figsize=(self.width, self.height))
         plt.plot(dates, posts, marker='o', linestyle='-', color='b')
 
         # Настройки графика
@@ -79,6 +94,8 @@ if __name__ == "__main__":
     parser.add_argument("-im", "--interval-minutes", help="Интервал в минутах для оси времени графика", type=int, default=0)  
     parser.add_argument("-ih", "--interval-hours", help="Интервал в часах для оси времени графика", type=int, default=0)  
     parser.add_argument("-id", "--interval-days", help="Интервал в днях для оси времени графика", type=int, default=0)  
+    parser.add_argument("-w", "--width", help="Ширина графика (от 3 до 30)", type=int, default=0)  
+    parser.add_argument("-h2", "--height", help="Высота графика (от 2 до 20)", type=int, default=0) 
     args = parser.parse_args()
     rating_file = os.path.abspath(input('Файл с json: '))
     if os.path.exists(rating_file) == False and Path(rating_file).suffix != '.json':
@@ -92,7 +109,7 @@ if __name__ == "__main__":
             with open(rating_file, 'r') as f:
                 data = json.load(f)
                 # Создаем объект и строим график
-                analyzer = PostingInThreadSpeedAnalyzer(data, title, Path(rating_file).stem, args.datetime_format, args.timezone, args.interval_minutes, args.interval_hours, args.interval_days)
+                analyzer = PostingInThreadSpeedAnalyzer(data, title, Path(rating_file).stem, args.datetime_format, args.timezone, args.interval_minutes, args.interval_hours, args.interval_days, args.width, args.height)
                 analyzer.plot_posting_speed() 
         else:
             print("Файл рейтинга пуст или отсутствует.")
